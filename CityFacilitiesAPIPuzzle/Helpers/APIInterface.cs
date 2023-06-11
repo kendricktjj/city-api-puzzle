@@ -37,17 +37,18 @@ namespace CityFacilitiesAPIPuzzle.Helpers
                         }
                     }
                     var response = client.GetAsync(uri); // Should move this to Task to be proper async
-                                                         //response.Result.EnsureSuccessStatusCode();
 
                     if (!response.Result.IsSuccessStatusCode)
                     {
                         System.Diagnostics.Debug.WriteLine("API call failed.");
                         System.Diagnostics.Debug.WriteLine($"Error: {response.Result.Content.ReadAsStringAsync().Result}");
 
+                        // Return empty list if API call fails
                         return new List<T>();
                     }
                     System.Diagnostics.Debug.WriteLine("API call successful.");
 
+                    // Convert API response to usable List<T> by deserializing it
                     var jsonString = response.Result.Content.ReadAsStringAsync().Result;
                     var productList = JsonConvert.DeserializeObject<List<T>>(jsonString);
 

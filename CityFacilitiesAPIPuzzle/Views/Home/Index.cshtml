@@ -3,7 +3,7 @@
 }
 
 <h1 class="panel-title list-panel-title">Welcome to All the Clouds</h1>
-    Select user type:
+Select user type:
 <br />
 <br />
 
@@ -33,17 +33,17 @@
 </div>
 
 <script type="text/javascript">
+    // Function that loads 
     function LoadProductList()
     {
-        console.log('Clicked!')
         // Make Product List visible once Customer button is clicked.
         document.getElementById("productListDiv").style.visibility = "visible";
 
         $.ajax({
             type: "POST",
-            url: '@Url.Action("GetProducts", "Home")',
+            url: '@Url.Action("GetProductList", "Home")',
             success: function (response) {
-                console.log("Success!");
+                console.log("GetProductList() call successful.");
 
                 var model = response;
                 var row = $("#WebGrid tbody tr:last-child").clone(true);
@@ -64,25 +64,12 @@
                     //$("#WebGrid").append(row);
                     webGrid.append(row);
                     row = $("#WebGrid tbody tr:last-child").clone(true);
-
-                    ////Add the Name value to first cell.
-                    //SetValue(row, 0, product.ProductId);
-                    ////Add the Country value to second cell.
-                    //SetValue(row, 1, product.Name);
-                    //SetValue(row, 1, product.Description);
-                    //SetValue(row, 1, product.UnitPriceWithMarkup);
-
-                    ////Add the row to the WebGrid.
-                    //webGrid.append(row);
                 });
-                //$('#ajaxgrid').html(response);
             }
             , error: function (response) {
-                console.log("Failure!");
+                console.log("GetProductList() call failed.");
                 console.log(response);
-                location.reload();
-                //console.log(response.responseText);
-                //location.reload(true); // reloads page
+                //location.reload();
             }
         });
     }

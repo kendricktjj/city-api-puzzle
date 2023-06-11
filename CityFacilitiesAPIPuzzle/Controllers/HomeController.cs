@@ -27,8 +27,12 @@ namespace CityFacilitiesAPIPuzzle.Controllers
             return View(initialList);
         }
 
+
+        /*
+         * Gets the product list by querying the AllTheClouds API and returning the results in JSON format.
+         */
         [HttpPost]
-        public ActionResult GetProducts()
+        public ActionResult GetProductList()
         {
             APIInterface<Product> apiI = new APIInterface<Product>();
             string apiURL = "https://alltheclouds.com.au/api/Products";
