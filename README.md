@@ -13,6 +13,12 @@ The following addons were installed using Visual Studio's NuGet Package Manager:
 * jQuery 3.7.0 - For JavaScript functionality.
 * Microsoft.AspNet.WebApi.Client - For HttpClient which is used to make the API calls.
 
+# Code location
+* Index page - Views/Home/Index.cshtml <br>
+* Index page controller - Controllers/HomeController.cs <br>
+* Product model - Models/Product.cs <br>
+* API interface code - Helpers/APIInterface.cs 
+
 # Possible improvements
 * Table used to display products should have proper grid lines.
 * API call is not async, and could be converted to run asynchronously to prevent blocking of UI thread.
