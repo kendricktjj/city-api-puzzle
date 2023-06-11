@@ -25,7 +25,7 @@ Select user type:
                         , grid.Column("Name")
                         , grid.Column("Description")
                         , grid.Column("UnitPriceWithMarkup", "Price")
-                        , grid.Column("MaximumQuantity", "Max Purchaseable Quantity")
+                        //, grid.Column("MaximumQuantity", "Max Purchaseable Quantity")
                     }
                 )
         }
@@ -60,7 +60,7 @@ Select user type:
                     $("td", row).eq(1).html(product.Name);
                     $("td", row).eq(2).html(product.Description);
                     $("td", row).eq(3).html(product.UnitPriceWithMarkup);
-                    $("td", row).eq(4).html(product.MaximumQuantity);
+                    //$("td", row).eq(4).html(product.MaximumQuantity);
                     //$("#WebGrid").append(row);
                     webGrid.append(row);
                     row = $("#WebGrid tbody tr:last-child").clone(true);
