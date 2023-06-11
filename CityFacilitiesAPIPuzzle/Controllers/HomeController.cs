@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using CityFacilitiesAPIPuzzle.Models;
+using Newtonsoft.Json;
+using CityFacilitiesAPIPuzzle.Helpers;
 
 namespace CityFacilitiesAPIPuzzle.Controllers
 {
@@ -10,7 +14,15 @@ namespace CityFacilitiesAPIPuzzle.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            APIInterface<Product> apiI = new APIInterface<Product>();
+            string apiURL = "https://alltheclouds.com.au/api/Products";
+            // Add API request HTTP headers
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("api-key", "API-DJTRTIJCPRXKA2R");
+
+            var productList = (List<Product>) apiI.CallAPI(apiURL, headers);
+
+            return View(productList);
         }
 
         public ActionResult About()
