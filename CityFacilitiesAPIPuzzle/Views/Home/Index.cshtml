@@ -1,3 +1,76 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
+<h1 class="panel-title list-panel-title">Welcome to All the Clouds</h1>
+Select user type:
+<br />
+<br />
+
+<button onclick="LoadProductList()">Customer</button>
+
+<div id="productListDiv" style="width: 100%; visibility: collapse">
+    <h1 class="panel-title list-panel-title">Product list:</h1>
+    <div>
+        @{
+            var grid = new WebGrid(Model);
+
+
+            @grid.GetHtml(
+                    htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+                    tableStyle: "webgrid"
+                    , columns: new[]
+                    {
+                        grid.Column("ProductId", "Product ID")
+                        , grid.Column("Name")
+                        , grid.Column("Description")
+                        , grid.Column("UnitPriceWithMarkup", "Price")
+                        , grid.Column("MaximumQuantity", "Max Purchaseable Quantity")
+                    }
+                )
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Function that loads 
+    function LoadProductList()
+    {
+        // Make Product List visible once Customer button is clicked.
+        document.getElementById("productListDiv").style.visibility = "visible";
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetProductList", "Home")',
+            success: function (response) {
+                console.log("GetProductList() call successful.");
+
+                var model = response;
+                var row = $("#WebGrid tbody tr:last-child").clone(true);
+
+                // Reference the WebGrid.
+                var webGrid = $("#WebGrid");
+                // Remove table contents
+                $("#WebGrid tbody tr").remove();
+
+                $.each(model, function () {
+                    var product = this;
+
+                    $("td", row).eq(0).html(product.ProductId);
+                    $("td", row).eq(1).html(product.Name);
+                    $("td", row).eq(2).html(product.Description);
+                    $("td", row).eq(3).html(product.UnitPriceWithMarkup);
+                    $("td", row).eq(4).html(product.MaximumQuantity);
+                    //$("#WebGrid").append(row);
+                    webGrid.append(row);
+                    row = $("#WebGrid tbody tr:last-child").clone(true);
+                });
+            }
+            , error: function (response) {
+                console.log("GetProductList() call failed.");
+                console.log(response);
+                //location.reload();
+            }
+        });
+    }
+</script>

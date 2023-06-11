@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using CityFacilitiesAPIPuzzle.Models;
+using Newtonsoft.Json;
+using CityFacilitiesAPIPuzzle.Helpers;
+using System.Threading.Tasks;
 
 namespace CityFacilitiesAPIPuzzle.Controllers
 {
@@ -10,21 +15,34 @@ namespace CityFacilitiesAPIPuzzle.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            /*
+             * Start the program with a blank list of products.
+             * Add a single dummy product to help with refreshing the table after data is loaded.
+             * There's probably a better way to do this, but I don't have the time to look into it.
+             */
+            Product dummy = new Product();
+            var initialList = new List<Product>();
+            initialList.Add(dummy);
+
+            return View(initialList);
         }
 
-        public ActionResult About()
+
+        /*
+         * Gets the product list by querying the AllTheClouds API and returning the results in JSON format.
+         */
+        [HttpPost]
+        public ActionResult GetProductList()
         {
-            ViewBag.Message = "Your application description page.";
+            APIInterface<Product> apiI = new APIInterface<Product>();
+            string apiURL = "https://alltheclouds.com.au/api/Products";
+            // Add API request HTTP headers
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("api-key", "API-DJTRTIJCPRXKA2R");
 
-            return View();
-        }
+            var productList = (List<Product>) apiI.CallAPI(apiURL, headers);
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return Json(productList);
         }
     }
 }

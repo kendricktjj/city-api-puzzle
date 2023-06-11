@@ -77,3 +77,5 @@ C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\obj\
 C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\obj\Debug\CityFacilitiesAPIPuzzle.csproj.CopyComplete
 C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\obj\Debug\CityFacilitiesAPIPuzzle.dll
 C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\obj\Debug\CityFacilitiesAPIPuzzle.pdb
+C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\bin\System.Net.Http.Formatting.dll
+C:\Users\kendr\source\repos\CityFacilitiesAPIPuzzle\CityFacilitiesAPIPuzzle\bin\System.Net.Http.Formatting.xml
