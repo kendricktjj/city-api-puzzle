@@ -21,10 +21,10 @@ Select user type:
                     tableStyle: "webgrid"
                     , columns: new[]
                     {
-                        grid.Column("ProductId", "Product ID")
-                        , grid.Column("Name")
-                        , grid.Column("Description")
-                        , grid.Column("UnitPriceWithMarkup", "Price")
+                        grid.Column("ProductId", "Product ID", null, null, false)
+                        , grid.Column("Name", "Name", null, null, false)
+                        , grid.Column("Description", "Description", null, null, false)
+                        , grid.Column("UnitPriceWithMarkup", "Price", null, null, false)
                         //, grid.Column("MaximumQuantity", "Max Purchaseable Quantity")
                     }
                 )
